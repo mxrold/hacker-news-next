@@ -1,12 +1,16 @@
 import Image from "next/image";
+import { ArticleNormalized } from "../Articles/articles.interface";
 
-export default function ArticleItem(): JSX.Element {
+export default function ArticleItem(props: ArticleNormalized): JSX.Element {
+  const { author, story_title, story_url, created_at } = props;
+
   return (
     <article className="flex justify-between border border-gray-300 rounded-md hover:opacity-60">
       <a
-        href="/"
+        href={story_url}
         target="_blank"
         className="flex flex-col w-10/12 py-4 pl-4 pr-6"
+        title={story_title}
       >
         <span className="inline-flex">
           <Image
@@ -17,13 +21,12 @@ export default function ArticleItem(): JSX.Element {
             className="mr-2"
           />
           <p className="text-xs font-normal text-gray-500">
-            <time>5 min ago </time>
-            by Lorem ipsum
+            <time>{created_at} ago </time>
+            by {author}
           </p>
         </span>
         <h3 className="mt-3 text-normal font-medium text-gray-600">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita
-          maxime consequatur aliquam consequuntur voluptatem
+          {story_title}
         </h3>
       </a>
       <div className="flex justify-center items-center w-2/12 p-4 bg-gray-200">

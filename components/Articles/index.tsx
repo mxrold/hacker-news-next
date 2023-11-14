@@ -1,12 +1,25 @@
+"use client";
 import ArticleItem from "../ArticleItem";
-import { generateId } from "@/utils/generateId";
+import { ArticleNormalized } from "./articles.interface";
 
-export default function Articles(): JSX.Element {
+export default function Articles({
+  loading,
+  error,
+  articles,
+}: {
+  loading: boolean;
+  error: boolean;
+  articles: ArticleNormalized[];
+}): JSX.Element {
   return (
-    <section className="container grid gap-8 lg:grid-cols-2 my-12">
-      {[0, 1, 2, 3].map(() => (
-        <ArticleItem key={generateId()} />
-      ))}
-    </section>
+    <>
+      {loading && <h1>...Loading</h1>}
+      {error && <h1>Error</h1>}
+      <section className="container grid gap-8 lg:grid-cols-2 my-12">
+        {articles?.map((article) => (
+          <ArticleItem key={article.story_id} {...article} />
+        ))}
+      </section>
+    </>
   );
 }

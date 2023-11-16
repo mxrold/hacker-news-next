@@ -1,5 +1,5 @@
 export enum CategoriesEnum {
-  ANGULAR = "angular",
-  REACT = "react",
-  VUE = "vue",
+  ANGULAR = "Angular",
+  REACT = "React",
+  VUE = "Vue",
 }

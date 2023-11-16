@@ -34,6 +34,7 @@ export const useLocalStorage = <T>(key: string = "", initialValue: T) => {
 
         setState({ loading: false, error: false });
       } catch (error) {
+        console.error("fetchItem", error);
         setState({ loading: false, error: true });
       }
     };
@@ -42,12 +43,17 @@ export const useLocalStorage = <T>(key: string = "", initialValue: T) => {
   }, [key, initialValue]);
 
   const saveItem = (newItem: T | T[]) => {
-    if (Array.isArray(newItem)) {
-      setItems(newItem as T);
-      localStorage.setItem(key, JSON.stringify(newItem));
-    } else {
-      setItems(newItem);
-      localStorage.setItem(key, JSON.stringify(newItem));
+    try {
+      if (Array.isArray(newItem)) {
+        setItems(newItem as T);
+        localStorage.setItem(key, JSON.stringify(newItem));
+      } else {
+        setItems(newItem);
+        localStorage.setItem(key, JSON.stringify(newItem));
+      }
+    } catch (error) {
+      console.error("saveItem", error);
+      setState({ loading: false, error: true });
     }
   };
 

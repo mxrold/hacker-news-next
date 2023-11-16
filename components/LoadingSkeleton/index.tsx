@@ -1,15 +1,28 @@
+import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { LoadingSkeletonProps } from "./loadingSkeleton.interface";
 
-export default function LoadingSkeleton(): JSX.Element {
-  return (
-    <div className="container grid lg:grid-cols-2 h-screen my-12">
-      <div className="lg:mr-4">
-        <Skeleton count={10} className="h-16 mb-4" />
-      </div>
-      <div className="lg:ml-4">
-        <Skeleton count={10} className="h-16 mb-4" />
-      </div>
-    </div>
-  );
-}
+const LoadingSkeleton = ({
+  quantity,
+  repeat,
+  containerClassName,
+  containerChildName,
+  skeletonClassName,
+}: LoadingSkeletonProps): JSX.Element => {
+  const renderSkeletons = (): React.ReactNode[] => {
+    const skeletons = [];
+    for (let i = 0; i < (repeat || 1); i++) {
+      skeletons.push(
+        <div key={i} className={containerChildName}>
+          <Skeleton count={quantity} className={skeletonClassName} />
+        </div>,
+      );
+    }
+    return skeletons;
+  };
+
+  return <div className={containerClassName}>{renderSkeletons()}</div>;
+};
+
+export default LoadingSkeleton;

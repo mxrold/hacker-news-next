@@ -18,6 +18,7 @@ export default function Home(): JSX.Element {
     categorySelected,
     countPages,
   );
+
   let articles: ArticleNormalized[] = [];
   if (data) {
     articles = normalizeArticle(data);

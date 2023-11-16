@@ -14,18 +14,21 @@ export default function Categories(): JSX.Element {
       src: "/angular-icon.png",
       alt: "Angular icon",
       title: "Angular",
+      actionTitle: "Filter news by Angular",
       id: CategoriesEnum.ANGULAR,
     },
     {
       src: "/react-icon.png",
       alt: "React icon",
       title: "React",
+      actionTitle: "Filter news by React",
       id: CategoriesEnum.REACT,
     },
     {
       src: "/vue-icon.png",
       alt: "Vue icon",
       title: "Vue",
+      actionTitle: "Filter news by Vue",
       id: CategoriesEnum.VUE,
     },
   ];

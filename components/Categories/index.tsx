@@ -3,9 +3,10 @@ import { useState } from "react";
 import Image from "next/image";
 import CategoryItem from "../CategoryItem";
 import { CategoriesInterface } from "./categories.interface";
+import { CategoriesEnum } from "./categories.enum";
 import { generateId } from "@/utils/generateId";
 
-export default function FilterCategories(): JSX.Element {
+export default function Categories(): JSX.Element {
   const [openCategories, setOpenCategories] = useState<boolean>(false);
 
   const categoryItems: CategoriesInterface[] = [
@@ -13,16 +14,19 @@ export default function FilterCategories(): JSX.Element {
       src: "/angular-icon.png",
       alt: "Angular icon",
       title: "Angular",
+      id: CategoriesEnum.ANGULAR,
     },
     {
       src: "/react-icon.png",
       alt: "React icon",
       title: "React",
+      id: CategoriesEnum.REACT,
     },
     {
       src: "/vue-icon.png",
       alt: "Vue icon",
       title: "Vue",
+      id: CategoriesEnum.VUE,
     },
   ];
 

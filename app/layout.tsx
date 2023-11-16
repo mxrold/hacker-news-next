@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { Inter } from "next/font/google";
+import { ContextProvider } from "@/context/useContext";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
@@ -18,11 +20,19 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-slate-50`}>
-        <Header />
-        <Navbar />
-        {children}
-      </body>
+      <ContextProvider>
+        <Head>
+          <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥷🏼</text></svg>"
+          />
+        </Head>
+        <body className={`${inter.className} bg-slate-50`}>
+          <Header />
+          <Navbar />
+          {children}
+        </body>
+      </ContextProvider>
     </html>
   );
 }

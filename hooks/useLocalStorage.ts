@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 
 export const useLocalStorage = <T>(key: string = "", initialValue: T) => {
@@ -50,10 +51,5 @@ export const useLocalStorage = <T>(key: string = "", initialValue: T) => {
     }
   };
 
-  const getAllItem = (): T | null => {
-    const item = localStorage.getItem(key) || "";
-    return JSON.parse(item);
-  };
-
-  return { items, saveItem, getAllItem, ...state };
+  return { items, saveItem, ...state };
 };

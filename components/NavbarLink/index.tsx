@@ -19,7 +19,7 @@ export default function NavbarLink(props: NavbarInterface): JSX.Element {
       key={generateId()}
       className="text-base font-medium list-none"
       href={href}
-      title={href}
+      title={title}
     >
       <li
         className={`${activeLink(

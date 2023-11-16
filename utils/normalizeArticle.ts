@@ -10,7 +10,9 @@ export const normalizeArticle = (
   data: ArticlesInterface[],
 ): ArticleNormalized[] | [] => {
   if (!data) return [];
+
   const filteredArticles: ArticleNormalized[] = [];
+  const seenArticles: Record<string, boolean> = {};
 
   data.forEach((articles: ArticlesInterface) => {
     articles.hits?.forEach((article: ArticleDTO) => {
@@ -19,13 +21,17 @@ export const normalizeArticle = (
       const articleDate = getDate(created_at);
 
       if (author && story_title && story_url && created_at && story_id) {
-        filteredArticles.push({
-          author,
-          story_title,
-          story_url,
-          created_at: articleDate,
-          story_id: id,
-        });
+        if (!seenArticles[id]) {
+          filteredArticles.push({
+            author,
+            story_title,
+            story_url,
+            created_at: articleDate,
+            story_id: id,
+          });
+
+          seenArticles[id] = true;
+        }
       }
     });
   });

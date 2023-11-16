@@ -3,10 +3,10 @@ import { useGlobalContext } from "@/context/useContext";
 import { CategoriesInterface } from "../Categories/categories.interface";
 
 export default function CategoryItem(props: CategoriesInterface): JSX.Element {
-  const { src, width = 22, height = 22, alt, title, id } = props;
+  const { src, width = 22, height = 22, alt, title, id, actionTitle } = props;
   const { categorySelected, setCategorySelected } = useGlobalContext();
 
-  const saveCategoryContext = () => {
+  const saveCategoryContext = (): void => {
     setCategorySelected(id);
   };
 
@@ -15,6 +15,7 @@ export default function CategoryItem(props: CategoriesInterface): JSX.Element {
       className={`hover:bg-gray-100 ${
         categorySelected === id && "bg-gray-200"
       }`}
+      title={actionTitle}
     >
       <button
         className="flex items-center w-full h-11 py-1 px-3"

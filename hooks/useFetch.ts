@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export const useFetch = <T>(
   API: string = "",
-  query = "",
+  query: string = "",
   countPages: number,
 ) => {
   const [data, setData] = useState<T[]>([]);
@@ -29,7 +29,7 @@ export const useFetch = <T>(
       setData((prev) => [...prev, res]);
       setState({ ...state, loading: false });
     } catch (error) {
-      console.error(error);
+      console.error("useFetch", error);
       setState({ ...state, error: true });
     }
   }

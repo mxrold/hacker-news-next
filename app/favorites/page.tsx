@@ -1,5 +1,6 @@
 "use client";
 import Articles from "@/components/Articles";
+import CustomMessage from "@/components/CustomMessage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export default function Favorites(): JSX.Element {
@@ -14,9 +15,7 @@ export default function Favorites(): JSX.Element {
         <Articles loading={loading} error={error} articles={items} />
       ) : (
         <div className="container text-center">
-          <h2 className="text-lg font-medium text-gray-600">
-            Go save your favorite news!
-          </h2>
+          <CustomMessage text="Go save your favorite news!" />
         </div>
       )}
     </>

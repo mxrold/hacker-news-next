@@ -6,7 +6,7 @@ import { ArticleNormalized } from "../Articles/articles.interface";
 
 export default function ArticleItem(props: ArticleNormalized): JSX.Element {
   const { author, story_title, story_url, created_at, story_id } = props;
-  const [fav, setIsFav] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const { items, saveItem } = useLocalStorage(
     process.env.NEXT_PUBLIC_HACKER_NEWS_KEY_STORAGE,
@@ -17,21 +17,21 @@ export default function ArticleItem(props: ArticleNormalized): JSX.Element {
     const isFavorite =
       items?.some((item: ArticleNormalized) => item.story_id === story_id) ||
       false;
-    setIsFav(isFavorite);
+    setFavorite(isFavorite);
   }, [items.length]);
 
-  const handleFavorite = () => {
-    setIsFav(!fav);
+  const handleFavorite = (): void => {
+    setFavorite(!favorite);
 
-    if (fav) {
+    if (favorite) {
       const updatedItems =
         items?.filter(
           (item: ArticleNormalized) => item.story_id !== story_id,
         ) || [];
       saveItem(updatedItems);
     } else {
-      const cloned = { ...props, favorite: true } as ArticleNormalized;
-      saveItem([...items, cloned]);
+      const clonedObj = { ...props, favorite: true } as ArticleNormalized;
+      saveItem([...items, clonedObj]);
     }
   };
 
@@ -63,7 +63,7 @@ export default function ArticleItem(props: ArticleNormalized): JSX.Element {
       <div className="flex justify-center items-center w-2/12 p-4 bg-gray-200">
         <button onClick={handleFavorite}>
           <Image
-            src={fav ? `/heart-fill.svg` : `/outline-heart.svg`}
+            src={favorite ? `/heart-fill.svg` : `/outline-heart.svg`}
             width={26}
             height={26}
             alt="Heart icon"

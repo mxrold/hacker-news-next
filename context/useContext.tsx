@@ -8,12 +8,12 @@ import React, {
   SetStateAction,
 } from "react";
 
-interface GlobalContextProps {
+interface GlobalContextInterface {
   categorySelected: string;
   setCategorySelected: Dispatch<SetStateAction<string>>;
 }
 
-const GlobalContext = createContext<GlobalContextProps | null>(null);
+const GlobalContext = createContext<GlobalContextInterface | null>(null);
 
 export const ContextProvider = ({
   children,

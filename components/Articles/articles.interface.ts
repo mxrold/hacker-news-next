@@ -37,6 +37,7 @@ export interface ArticleNormalized {
   story_id: number | string;
   story_title: string;
   story_url: string;
+  favorite?: boolean;
 }
 
 interface ProcessingTimingsMS {

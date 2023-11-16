@@ -4,4 +4,5 @@ export interface CategoriesInterface {
   height?: number;
   alt: string;
   title: string;
+  id: string;
 }

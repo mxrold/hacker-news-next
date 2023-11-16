@@ -14,12 +14,9 @@ export default function ArticleItem(props: ArticleNormalized): JSX.Element {
   );
 
   useEffect(() => {
-    console.log("items", items);
-    console.log("id", story_id);
     const isFavorite =
       items?.some((item: ArticleNormalized) => item.story_id === story_id) ||
       false;
-    console.log("isFavorite", isFavorite);
     setIsFav(isFavorite);
   }, [items.length]);
 
